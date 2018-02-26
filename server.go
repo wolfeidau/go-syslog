@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"gopkg.in/mcuadros/go-syslog.v2/format"
+	"github.com/wolfeidau/go-syslog/format"
 )
 
 var (
@@ -112,6 +112,14 @@ func (s *Server) ListenUnixgram(addr string) error {
 	connection.SetReadBuffer(datagramReadBufferSize)
 
 	s.connections = append(s.connections, connection)
+	return nil
+}
+
+//Configure the server for listen on a TCP addr
+func (s *Server) Listen(inner net.Listener) error {
+
+	s.doneTcp = make(chan bool)
+	s.listeners = append(s.listeners, inner)
 	return nil
 }
 

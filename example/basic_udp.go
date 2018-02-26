@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"gopkg.in/mcuadros/go-syslog.v2"
+	syslog "github.com/wolfeidau/go-syslog"
 )
 
 func main() {
